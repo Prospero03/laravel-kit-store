@@ -15,24 +15,26 @@ import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
 import { BookOpen, Folder, LayoutGrid, User, Users } from 'lucide-react';
 import AppLogo from './app-logo';
+import admin from '@/routes/admin'
+
 
 const mainNavItems: NavItem[] = [
     {
         title: 'Панель',
-        href: dashboard(),
-        //href: 'admin/dashboard'
+        href: admin.dashboard(),
+        // href: dashboard(),
         icon: LayoutGrid,
     },
     {
         title: 'Пользователи',
-        href: 'admin/users',
+        href: admin.users.index(),
         icon: Users,
     },
-    {
-        title: 'Администратор',
-        href: 'admin/admins',
-        icon: User,
-    },
+    // {
+    //     title: 'Администратор',
+    //     href:   'admin.admins.index',
+    //     icon: User,
+    // },
 ];
 
 const footerNavItems: NavItem[] = [

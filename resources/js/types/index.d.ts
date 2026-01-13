@@ -41,3 +41,20 @@ export interface User {
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
 }
+
+export interface PaginatedData<T> {
+    data: T[];
+    total: number;
+    per_page: number;
+    current_page: number;
+    last_page: number;
+    from?: number;
+    to?: number;
+    links: {
+        url: string | null;
+        label: string;
+        active: boolean;
+    }[];
+    prev_page_url?: string | null;
+    next_page_url?: string | null;
+}
