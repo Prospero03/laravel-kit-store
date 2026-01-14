@@ -8,13 +8,13 @@ import admin from "@/routes/admin";
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Пользователи',
-        href: admin.users.index().url,
+        title: 'Администраторы',
+        href: admin.admins.index().url,
     },
 ];
 
-export default function UserIndex(){
-    const {users, filters, can} = usePage().props;
+export default function adminIndex(){
+    const {admins, filters, can} = usePage().props;
     const columns = [
         {
             key: "index",
@@ -52,7 +52,7 @@ export default function UserIndex(){
     ];
 
     const handleDelete = (id:string) => {
-        router.delete(route('admin.users.destroy', id),{
+        router.delete(route('admin.admins.destroy', id),{
             preserveScroll: true,
             onSuccess: () =>{
                 // toast.success("Пользователь успешно удалён");
@@ -65,28 +65,28 @@ export default function UserIndex(){
 
     return(
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Пользователи"/>
+            <Head title="Администраторы"/>
             <div className="py-6">
                 <div className="mx-auto">
                     <DataTable
-                        data={users}
+                        data={admins}
                         columns={columns}
                         icon={User}
                         filters={filters}
 
-                        resourceName="Пользователи"
-                        resourceNameNotFound="Пользователей"
-                        singularName="Пользователя"
+                        resourceName="Администраторы"
+                        resourceNameNotFound="Администраторов"
+                        singularName="Администратора"
 
                         canViewResource={true}
                         canCreateResource={true} 
-                        canEditResource={false} 
+                        canEditResource={true} 
                         canDeleteResource={true}
 
-                        routeName='admin.users.index'
-                        viewRoute="admin.users.show"
-                        editRoute="admin.users.edit"
-                        createRoute="admin.users.create"
+                        routeName="admin.admins.index"   
+                        viewRoute="admin.admins.show"
+                        editRoute="admin.admins.edit"
+                        createRoute="admin.admins.create"
 
                         onDelete={handleDelete}
                     />
@@ -95,3 +95,5 @@ export default function UserIndex(){
         </AppLayout>
     )
 }
+
+//16:25

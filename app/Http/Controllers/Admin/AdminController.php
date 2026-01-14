@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Helpers\ImageUploader;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminStoreRequest;
+use App\Http\Requests\AdminUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class AdminController extends Controller
         $sort = $request->input('sort', 'id');
         $direction = $request->input('direction', 'asc');
 
-        $admins = User::select('id', 'name', 'email', 'image', 'phone', 'created_at')
+        $admins = User::select('id', 'name', 'email', 'avatar', 'phone', 'created_at')
         ->when($search, function($query, $search){
             $query->where('name','like','%'.$search.'%')
             ->orWhere('email','like','%'.$search.'%')
@@ -65,8 +66,35 @@ class AdminController extends Controller
 
         User::create($data);
         return redirect()->route('admin.admins.index')->with('success','Admin');
-
     } 
-}
 
-//13:27
+    public function edit($id) :Response
+    {
+        $admin = User::findOrFail($id);
+        return Inertia::render('admin/admins/edit',[
+            'admin'=> $admin
+        ]);
+    }
+
+    public function update(AdminUpdateRequest $request, $id): RedirectResponse
+    {
+        $admin = User::findOrFail($id);
+        $data = $request->only('name', 'email', 'phone');
+
+        if ($request->hasFile('avatar')) {
+            ImageUploader::deleteImage($admin->avatar);
+            $data['avatar'] = ImageUploader::uploadedImage($request->file('avatar'), 'admins');
+        }
+
+        $admin->update($data);
+        return redirect()->route('admin.admins.index')->with('success', 'Admin updated successfully.');
+    }
+
+    public function destroy($id): RedirectResponse
+    {
+        $admin = User::findOrFail($id);
+        ImageUploader::deleteImage($admin->avatar);
+        $admin->delete();
+        return redirect()->route('admin.admins.index')->with('success', 'Admin deleted successfully.');
+    }
+}
