@@ -36,6 +36,7 @@ export default function UserIndex(){
         },
         {
             key: 'created_at',
+            type: 'date',
             label: 'Дата создания',
             sortable: true,
         }
