@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Helpers\ImageUploader;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AdminStoreRequest;
-use App\Http\Requests\AdminUpdateRequest;
+// use App\Http\Requests\AdminStoreRequest;
+// use App\Http\Requests\AdminUpdateRequest;
+use App\Http\Requests\Admin\AdminStoreRequest;
+use App\Http\Requests\Admin\AdminUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
