@@ -15,7 +15,7 @@
 - Активирование `authorize()`: 
     `function authorize()` => `return true`
 
-##### AdminStoreRequest
+[`AdminStoreRequest.php`](/app/Http/Requests/Admin/AdminStoreRequest.php) :
 Валидация `roles()`: 
 
     ```php
@@ -31,10 +31,9 @@
         ];
     }
     ```
-[`AdminStoreRequest.php`](/app/Http/Requests/Admin/AdminStoreRequest.php)
 
 
-##### AdminUpdateRequest
+[`AdminUpdateRequest.php`](/app/Http/Requests/Admin/AdminUpdateRequest.php) : 
 Валидация `roles()`: 
 
     ```php
@@ -48,4 +47,3 @@
             ];
         }
     ```
-[`AdminUpdateRequest.php`](/app/Http/Requests/Admin/AdminUpdateRequest.php)
