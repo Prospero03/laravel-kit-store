@@ -8,13 +8,10 @@
 
 [`AdminController.ph`](/app/Http/Controllers/Admin/AdminController.php)
 
-### Описание Request
-- Чтобы создать запрос: 
-    `php artisan make:request AdminUpdateRequest`
-- Активирование `authorize()`: 
-    `function authorize()` => `return true`
-
 ---
+
+### Описание Request
+- CLI команда: `php artisan make:request AdminUpdateRequest`
 
 [`AdminStoreRequest.php`](/app/Http/Requests/Admin/AdminStoreRequest.php) :
 - Прописать валидация `roles()`: 
